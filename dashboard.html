@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORPHEUS Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="panel dashboard-shell">
+    <section id="boot-sequence" class="boot-sequence" aria-live="polite">
+      <div class="boot-card">
+        <p class="system-tag">BOOT // ORPHEUS NODE</p>
+        <div id="boot-log" class="boot-log"></div>
+        <button id="boot-continue" class="btn" type="button" hidden>Enter Dashboard</button>
+      </div>
+    </section>
+
+    <div class="dashboard-head">
+      <div>
+        <p class="system-tag">ORPHEUS WORKSTATION // RECRUIT DESK</p>
+        <h1>Recovered Operations Dashboard</h1>
+        <p id="dashboard-subtitle" class="muted">Session sync pending.</p>
+      </div>
+      <div class="dashboard-badge">
+        <span id="dashboard-rank">Recruit</span>
+        <span id="dashboard-level">L1</span>
+      </div>
+    </div>
+
+    <section class="dashboard-grid">
+      <article class="dashboard-card">
+        <h2>Terminal System</h2>
+        <p class="muted">Inspect hidden logs, decrypt fragments, and trigger the fake filesystem puzzle chain.</p>
+        <ul class="tiny">
+          <li>Commands: <code>help</code>, <code>ls</code>, <code>cat</code>, <code>cd</code>, <code>pwd</code>.</li>
+          <li>Collect the three clue shards: <strong>zt</strong>, <strong>ke</strong>, <strong>tl</strong>.</li>
+        </ul>
+        <a class="btn" href="terminal.html">Open Terminal</a>
+      </article>
+
+      <article class="dashboard-card">
+        <h2>Fake Filesystem</h2>
+        <p class="muted">The node mirrors a corporate workstation: inboxes, quarantined archives, and dev records.</p>
+        <div id="filesystem-preview" class="filesystem-preview"></div>
+      </article>
+
+      <article class="dashboard-card">
+        <h2>Mission Board</h2>
+        <ol class="tiny mission-list">
+          <li>Read all thread logs.</li>
+          <li>Use <code>observe</code> to breach the blackbox.</li>
+          <li>Combine the three fragments into the unlock key.</li>
+          <li>Decide whether ORPHEUS deserves release.</li>
+        </ol>
+      </article>
+
+      <article class="dashboard-card">
+        <h2>System Access</h2>
+        <div class="tiny"><strong>Chat Relay:</strong> unlocks once you want live confusion.</div>
+        <div class="tiny"><strong>Rank Hub:</strong> opens at higher clearance.</div>
+        <div class="btn-row wrap-row">
+          <a class="btn ghost" href="chat.html">Open Chat</a>
+          <a class="btn ghost" href="index.html">Switch Account</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="auth-session.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

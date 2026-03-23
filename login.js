@@ -7,7 +7,7 @@
   const signupMsg = document.getElementById("signup-msg");
 
   function getNext() {
-    return new URLSearchParams(window.location.search).get("next") || "terminal.html";
+    return new URLSearchParams(window.location.search).get("next") || "dashboard.html";
   }
 
   loginForm?.addEventListener("submit", async (e) => {
