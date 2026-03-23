@@ -1,0 +1,91 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="271" y1="210" x2="929" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#39F3FF"/>
+      <stop offset="1" stop-color="#B968FF"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="350" y1="550" x2="850" y2="550" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#44F4FF"/>
+      <stop offset="1" stop-color="#B968FF"/>
+    </linearGradient>
+    <radialGradient id="iris" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 238) rotate(90) scale(96 96)">
+      <stop stop-color="#E8FFFF"/>
+      <stop offset="0.35" stop-color="#48F7FF"/>
+      <stop offset="0.75" stop-color="#082734"/>
+      <stop offset="1" stop-color="#000000"/>
+    </radialGradient>
+    <filter id="glow" x="0" y="0" width="1200" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0.8  0 0 1 0 1  0 0 0 1 0"/>
+    </filter>
+    <filter id="softGlow" x="0" y="0" width="1200" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <style>
+      .word { font: 800 104px 'Orbitron', 'Eurostile', 'Arial Black', sans-serif; letter-spacing: 10px; }
+      .small { font: 600 18px 'Orbitron', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="720" fill="black"/>
+
+  <g opacity="0.85" filter="url(#softGlow)">
+    <ellipse cx="600" cy="238" rx="240" ry="78" fill="url(#g1)"/>
+  </g>
+
+  <g filter="url(#glow)" opacity="0.9">
+    <path d="M320 238C405 170 490 135 600 135C710 135 795 170 880 238C795 306 710 341 600 341C490 341 405 306 320 238Z" stroke="url(#g1)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M360 238C435 186 507 160 600 160C693 160 765 186 840 238C765 290 693 316 600 316C507 316 435 290 360 238Z" stroke="#44F4FF" stroke-opacity="0.85" stroke-width="5"/>
+  </g>
+
+  <g opacity="0.9">
+    <circle cx="600" cy="238" r="96" fill="url(#iris)"/>
+    <circle cx="600" cy="238" r="44" fill="#020409"/>
+    <circle cx="632" cy="206" r="18" fill="white" fill-opacity="0.95"/>
+    <circle cx="600" cy="238" r="74" stroke="#55FFF7" stroke-width="5" stroke-dasharray="3 9" opacity="0.9"/>
+  </g>
+
+  <g stroke="url(#g1)" stroke-width="4" stroke-linecap="round" opacity="0.9">
+    <path d="M310 238H235"/>
+    <path d="M270 212H216"/>
+    <path d="M338 185L301 155H264"/>
+    <path d="M345 170L318 140"/>
+    <path d="M870 238H946"/>
+    <path d="M890 208H973"/>
+    <path d="M854 278H938"/>
+    <path d="M843 292L880 320H929"/>
+    <path d="M838 305L864 336"/>
+  </g>
+
+  <g fill="#39F3FF" opacity="0.85">
+    <circle cx="228" cy="238" r="8"/>
+    <circle cx="210" cy="212" r="6"/>
+    <circle cx="264" cy="140" r="6"/>
+    <circle cx="950" cy="238" r="8"/>
+    <circle cx="975" cy="208" r="6"/>
+    <circle cx="940" cy="278" r="6"/>
+    <circle cx="930" cy="320" r="6"/>
+  </g>
+  <g fill="#B968FF" opacity="0.9">
+    <circle cx="185" cy="238" r="8"/>
+    <circle cx="990" cy="208" r="8"/>
+    <circle cx="972" cy="278" r="8"/>
+  </g>
+
+  <g opacity="0.9" fill="url(#g2)">
+    <path d="M285 455H365L385 474V535L365 553H285L265 535V474L285 455Z"/>
+    <path d="M405 455H522L545 475V496L523 515H456V553H405V455ZM456 499H502L511 490V482L502 473H456V499Z"/>
+    <path d="M566 455H671L694 479V553H643V526H602V553H551V479L566 455ZM602 491V493H643V491L635 473H610L602 491Z"/>
+    <path d="M719 455H771V493H822V455H874V553H822V514H771V553H719V455Z"/>
+    <path d="M897 455H1055V473H948V492H1033V511H948V535H1060V553H897V455Z"/>
+  </g>
+
+  <g opacity="0.35" stroke="url(#g2)" stroke-width="6" stroke-linecap="round">
+    <path d="M240 486H150"/>
+    <path d="M1030 486H1120"/>
+    <path d="M270 528H178"/>
+    <path d="M1010 528H1110"/>
+  </g>
+
+  <text x="600" y="632" text-anchor="middle" class="small" fill="#6DEEFF" opacity="0.7">THE EYE IS OPEN</text>
+</svg>
