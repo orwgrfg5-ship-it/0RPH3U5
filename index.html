@@ -3,17 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ORPHEUS // Signal Archive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>ORPHEUS Access</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="noise"></div>
-    <header class="hero">
-      <nav class="topbar">
-        <div class="brand">
+    <main class="center-panel landing-shell">
+      <section class="landing-hero">
+        <div class="brand brand-large">
           <div class="eye-logo" aria-hidden="true">
             <div class="eye-outline"></div>
             <div class="eye-iris"></div>
@@ -21,131 +17,69 @@
             <div class="eye-glow"></div>
           </div>
           <div>
-            <p class="eyebrow">SURVEILLANCE NODE // ACTIVE</p>
-            <h1>ORPHEUS</h1>
-          </div>
-        </div>
-        <div class="status-pill">EYE = PRIMARY LOGO</div>
-      </nav>
-
-      <section class="hero-grid">
-        <div class="hero-copy">
-          <p class="section-tag">The Signal Watches Back</p>
-          <h2>Enter the archive. Decode the ranks. Follow the eye.</h2>
-          <p>
-            ORPHEUS is a hidden network wrapped in myth, ciphers, and controlled leaks.
-            Every transmission is a test. Every rank is earned through observation,
-            patience, and the right key.
-          </p>
-          <div class="hero-actions">
-            <a href="#lore" class="button primary">Read the lore</a>
-            <a href="#arg-panel" class="button secondary">Open ARG owner tab</a>
+            <p class="system-tag">ORPHEUS NODE // ACCESS CONTROL</p>
+            <h1>Login or Sign Up</h1>
+            <p class="muted">
+              Every player must create an account. All players start at Recruit; promotion keys rank you up.
+              The eye marks every live signal, every dead drop, and every recovered thread in the archive.
+            </p>
           </div>
         </div>
 
-        <aside class="signal-card">
-          <p class="signal-label">LIVE FEED</p>
-          <ul>
-            <li><span>Protocol</span><strong>BLACK MIRROR</strong></li>
-            <li><span>Status</span><strong>Eye online</strong></li>
-            <li><span>Active channels</span><strong>07</strong></li>
-            <li><span>Known fragments</span><strong>23 recovered</strong></li>
-          </ul>
-        </aside>
-      </section>
-    </header>
-
-    <main>
-      <section id="lore" class="panel">
-        <div class="panel-heading">
-          <p class="section-tag">Lore Archive</p>
-          <h3>More lore. More ARG threads. More secrets under the surface.</h3>
-        </div>
-        <div class="lore-grid">
-          <article class="card">
-            <h4>Origin of ORPHEUS</h4>
-            <p>
-              Long before the public channels appeared, ORPHEUS existed as a recovery engine
-              built to catalogue data that should have vanished. The engine began flagging one
-              symbol over and over: the eye. Operators called it a bug. The archive called it a witness.
-            </p>
-          </article>
-          <article class="card">
-            <h4>The Fracture Event</h4>
-            <p>
-              During the Fracture Event, seven sealed messages escaped into unrelated servers,
-              game descriptions, image metadata, and broken page titles. Anyone who stitched the
-              fragments together discovered the first promotion phrase and vanished from the public roster.
-            </p>
-          </article>
-          <article class="card">
-            <h4>Why the ranks matter</h4>
-            <p>
-              ORPHEUS ranks are not cosmetic. Each rank unlocks a deeper layer of the network:
-              hidden pages, altered filenames, false clues, dead drops, and blacksite logs that only make sense
-              once earlier steps are solved in sequence.
-            </p>
-          </article>
-          <article class="card">
-            <h4>ARG hooks</h4>
-            <p>
-              The ARG now threads across role descriptions, glitched timestamps, source comments,
-              and encoded key prompts. Players must compare symbols, decode acrostics, inspect visual hints,
-              and track repeating numbers tied to the eye motif.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="panel-heading">
-          <p class="section-tag">Recovered Intel</p>
-          <h3>Known clues inside the current operation.</h3>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span>01</span>
-            <div>
-              <h4>Watch the repeated numbers</h4>
-              <p>07, 13, and 23 recur throughout transmissions and rank instructions. They are sequence markers, not decoration.</p>
-            </div>
+        <div class="lore-banner">
+          <div class="panel compact-panel">
+            <h2>Recovered Lore</h2>
+            <ul class="lore-list">
+              <li><strong>Origin:</strong> ORPHEUS began as a recovery system meant to preserve data that should have disappeared.</li>
+              <li><strong>Fracture Event:</strong> Seven messages escaped into titles, metadata, and false mirrors across the network.</li>
+              <li><strong>The Eye:</strong> Operators treated it like an error; the archive treated it like a witness.</li>
+              <li><strong>ARG Rule:</strong> Nothing meaningful appears only once. Repeated numbers, corrupted names, and hidden prompts matter.</li>
+            </ul>
           </div>
-          <div class="timeline-item">
-            <span>02</span>
-            <div>
-              <h4>Metadata is part of the game</h4>
-              <p>Image names, section ids, hidden labels, and key prompts can all hold progression clues for serious players.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <span>03</span>
-            <div>
-              <h4>Promotion keys are rank-specific</h4>
-              <p>Every rank now uses a different promotion key so no one key can bypass the entire chain.</p>
+          <div class="panel compact-panel signal-box">
+            <h2>Entry Thread</h2>
+            <p class="muted">Promotion keys found in the ARG can raise your clearance level. Each next rank has its own different promotion key.</p>
+            <div class="btn-row">
+              <a class="btn ghost" href="terminal.html">Terminal</a>
+              <a class="btn ghost" href="owner-login.html">Owner</a>
+              <a class="btn ghost" href="admin.html">Mirror</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="arg-panel" class="panel owner-panel">
-        <div class="panel-heading">
-          <p class="section-tag">Owner Tab</p>
-          <h3>ARG rank menu</h3>
-          <p>Select a rank to reveal exactly how a player earns it, step by step.</p>
-        </div>
-        <div class="owner-layout">
-          <div class="rank-menu" id="rankMenu" role="tablist" aria-label="ARG ranks"></div>
-          <article class="rank-details card" id="rankDetails">
-            <p class="muted">Choose a rank from the menu.</p>
-          </article>
-        </div>
+      <section class="auth-grid auth-grid-single">
+        <form id="login-form" class="panel compact-panel">
+          <h2>Login</h2>
+          <div class="login-grid">
+            <label for="login-username">username</label>
+            <input id="login-username" autocomplete="username" required />
+            <label for="login-password">password</label>
+            <input id="login-password" type="password" autocomplete="current-password" required />
+          </div>
+          <div class="btn-row">
+            <button class="btn" type="submit">Enter</button>
+          </div>
+          <p id="login-msg" class="tiny muted"></p>
+        </form>
+
+        <form id="signup-form" class="panel compact-panel">
+          <h2>Sign Up</h2>
+          <div class="login-grid">
+            <label for="signup-username">username</label>
+            <input id="signup-username" autocomplete="username" required />
+            <label for="signup-password">password</label>
+            <input id="signup-password" type="password" autocomplete="new-password" required />
+          </div>
+          <div class="btn-row">
+            <button class="btn" type="submit">Create Account</button>
+          </div>
+          <p id="signup-msg" class="tiny muted"></p>
+        </form>
       </section>
     </main>
 
-    <footer class="footer">
-      <p>ORPHEUS // If the eye opens, the trial has already begun.</p>
-    </footer>
-
-    <script src="script.js"></script>
+    <script src="auth-session.js"></script>
+    <script src="login.js"></script>
   </body>
 </html>

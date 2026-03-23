@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Relay Chat</title><link rel="stylesheet" href="styles.css" /></head>
+  <body>
+    <main class="center-panel">
+      <h1>Relay Chat</h1>
+      <details class="rank-details">
+        <summary>(i) rank colors</summary>
+        <div class="rank-modal-card"><h3>Rank Color Key</h3><ul id="rankLegendList"></ul><button id="rankInfoClose" class="btn ghost" type="button">close</button></div>
+      </details>
+      <p class="muted">Shared local chat. Owner appears as <code>ORPHEUS_CEO</code>.</p>
+      <div id="chat-log" class="chat-log"></div>
+      <form id="chat-form" class="btn-row"><input id="chat-input" style="flex:1" placeholder="message" /><button class="btn" type="submit">Send</button></form>
+      <a href="terminal.html">&larr; back to terminal</a>
+    </main>
+    <script src="auth-session.js"></script><script src="chat.js"></script>
+  </body>
+</html>

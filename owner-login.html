@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Owner Login</title><link rel="stylesheet" href="styles.css" /></head>
+  <body>
+    <main class="center-panel">
+      <p class="system-tag">CEO ACCESS</p>
+      <h1>Owner Login</h1>
+      <p class="muted">Use the ORPHEUS_CEO credentials to access the control center.</p>
+      <form id="login-form" class="panel compact-panel">
+        <div class="login-grid">
+          <label for="login-username">username</label><input id="login-username" value="owner" required />
+          <label for="login-password">password</label><input id="login-password" type="password" required />
+        </div>
+        <div class="btn-row"><button class="btn" type="submit">Enter</button><a class="btn ghost" href="index.html">Back</a></div>
+        <p id="login-msg" class="tiny muted"></p>
+      </form>
+    </main>
+    <script src="auth-session.js"></script><script src="login.js"></script>
+  </body>
+</html>

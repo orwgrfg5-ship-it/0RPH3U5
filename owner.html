@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>CEO Console</title><link rel="stylesheet" href="styles.css" /></head>
+  <body>
+    <main class="center-panel ceo-ok">
+      <p class="system-tag">ORPHEUS_CEO Console</p>
+      <h1>Private control center</h1>
+      <p class="muted">Manage players, chat moderation, exports, and the ARG rank route.</p>
+
+      <div class="btn-row">
+        <button class="btn owner-tab active" type="button" data-tab="players">Players</button>
+        <button class="btn ghost owner-tab" type="button" data-tab="chat">Chat Tools</button>
+        <button class="btn ghost owner-tab" type="button" data-tab="arg">ARG</button>
+        <button class="btn ghost owner-tab" type="button" data-tab="system">System</button>
+      </div>
+
+      <section id="tab-players" class="owner-panel owner-panel-grid">
+        <div class="owner-split">
+          <ul id="playersList" class="player-list"></ul>
+          <div class="panel compact-panel">
+            <h2>Selected Player</h2>
+            <div id="playerDetails">Select a player to view rank, progress, moderation, and chat logs.</div>
+            <p id="playerActionMsg" class="tiny muted"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-chat" class="owner-panel owner-panel-grid" hidden>
+        <div class="panel compact-panel">
+          <h2>Chat Controls</h2>
+          <div class="btn-row">
+            <button id="clearChatBtn" class="btn" type="button">Clear Logs</button>
+            <button id="saveChatBtn" class="btn ghost" type="button">Save Logs</button>
+          </div>
+          <h3>Inject DEV Threads</h3>
+          <div class="btn-row">
+            <button class="btn ghost inject-dev" type="button" data-dev="DEV_00">DEV00 Talk</button>
+            <button class="btn ghost inject-dev" type="button" data-dev="DEV_01">DEV01 Talk</button>
+            <button class="btn ghost inject-dev" type="button" data-dev="DEV_02">DEV02 Talk</button>
+            <button class="btn ghost inject-dev" type="button" data-dev="DEV_03">DEV03 Talk</button>
+            <button class="btn ghost inject-dev" type="button" data-dev="DEV_04">DEV04 Talk</button>
+            <button class="btn ghost inject-dev" type="button" data-dev="DEV_05">DEV05 Talk</button>
+            <button class="btn ghost inject-dev" type="button" data-dev="SYSTEM">SYSTEM Interrupt</button>
+          </div>
+          <h3>DEV00 Custom Message</h3>
+          <form id="dev00CustomForm" class="dev00-custom-form">
+            <textarea id="dev00CustomText" placeholder="Message"></textarea>
+            <button class="btn" type="submit">Send as DEV00</button>
+          </form>
+          <p id="chatToolsMsg" class="tiny muted"></p>
+        </div>
+      </section>
+
+      <section id="tab-arg" class="owner-panel owner-panel-grid" hidden>
+        <div class="panel compact-panel">
+          <h2>ARG Rank Route</h2>
+          <p class="muted">Click any rank to see how to get it and what unique promotion key format belongs to that next promotion.</p>
+          <div class="owner-arg-layout">
+            <div id="argRankMenu" class="rank-menu"></div>
+            <div id="argRankDetails" class="panel compact-panel"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-system" class="owner-panel owner-panel-grid" hidden>
+        <div class="panel compact-panel">
+          <h2>System</h2>
+          <div class="btn-row"><button id="ownerLogout" class="btn" type="button">Log Out</button><a class="btn ghost" href="terminal.html">Open Terminal</a></div>
+        </div>
+      </section>
+    </main>
+    <script src="auth-session.js"></script><script src="owner-dashboard.js"></script>
+  </body>
+</html>
