@@ -1,85 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ORPHEUS Access</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="center-panel landing-shell">
-      <section class="landing-hero">
-        <div class="brand brand-large">
-          <div class="eye-logo" aria-hidden="true">
-            <div class="eye-outline"></div>
-            <div class="eye-iris"></div>
-            <div class="eye-pupil"></div>
-            <div class="eye-glow"></div>
-          </div>
-          <div>
-            <p class="system-tag">ORPHEUS NODE // ACCESS CONTROL</p>
-            <h1>Login or Sign Up</h1>
-            <p class="muted">
-              Every player must create an account. All players start at Recruit; promotion keys rank you up.
-              The eye marks every live signal, every dead drop, and every recovered thread in the archive.
-            </p>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORPHEUS Access</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="panel landing-panel">
+    <!-- ORPHEUS_NOTE_A: 01000100 01000101 01010110 -->
+    <div class="brand-row">
+      <div class="eye-logo" aria-hidden="true">
+        <div class="eye-outline"></div>
+        <div class="eye-iris"></div>
+        <div class="eye-pupil"></div>
+        <div class="eye-glow"></div>
+      </div>
+      <div>
+        <p class="system-tag">ORPHEUS NODE // ACCESS CONTROL</p>
+        <h1>Login or Sign Up</h1>
+        <p class="muted">Every player must create an account. All players start at <strong>Recruit</strong>; promotion keys rank you up.</p>
+      </div>
+    </div>
 
-        <div class="lore-banner">
-          <div class="panel compact-panel">
-            <h2>Recovered Lore</h2>
-            <ul class="lore-list">
-              <li><strong>Origin:</strong> ORPHEUS began as a recovery system meant to preserve data that should have disappeared.</li>
-              <li><strong>Fracture Event:</strong> Seven messages escaped into titles, metadata, and false mirrors across the network.</li>
-              <li><strong>The Eye:</strong> Operators treated it like an error; the archive treated it like a witness.</li>
-              <li><strong>ARG Rule:</strong> Nothing meaningful appears only once. Repeated numbers, corrupted names, and hidden prompts matter.</li>
-            </ul>
-          </div>
-          <div class="panel compact-panel signal-box">
-            <h2>Entry Thread</h2>
-            <p class="muted">Promotion keys found in the ARG can raise your clearance level. Each next rank has its own different promotion key.</p>
-            <div class="btn-row">
-              <a class="btn ghost" href="terminal.html">Terminal</a>
-              <a class="btn ghost" href="owner-login.html">Owner</a>
-              <a class="btn ghost" href="admin.html">Mirror</a>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section class="lore-strip">
+      <div class="panel lore-card">
+        <h3>Recovered Lore</h3>
+        <p class="muted">The eye is not decoration. It is the witness that survived every cycle reset. ORPHEUS keeps testing new hosts, rewriting dev voices, and hiding rank keys inside system debris.</p>
+      </div>
+      <div class="panel lore-card">
+        <h3>ARG Trail</h3>
+        <p class="muted">Read the logs, decode the binary, unlock the cipher lab, inspect hidden mirrors, and recover the unique key for each promotion step.</p>
+      </div>
+    </section>
 
-      <section class="auth-grid auth-grid-single">
-        <form id="login-form" class="panel compact-panel">
-          <h2>Login</h2>
-          <div class="login-grid">
-            <label for="login-username">username</label>
-            <input id="login-username" autocomplete="username" required />
-            <label for="login-password">password</label>
-            <input id="login-password" type="password" autocomplete="current-password" required />
-          </div>
-          <div class="btn-row">
-            <button class="btn" type="submit">Enter</button>
-          </div>
-          <p id="login-msg" class="tiny muted"></p>
-        </form>
-
-        <form id="signup-form" class="panel compact-panel">
-          <h2>Sign Up</h2>
-          <div class="login-grid">
-            <label for="signup-username">username</label>
-            <input id="signup-username" autocomplete="username" required />
-            <label for="signup-password">password</label>
-            <input id="signup-password" type="password" autocomplete="new-password" required />
-          </div>
-          <div class="btn-row">
-            <button class="btn" type="submit">Create Account</button>
-          </div>
-          <p id="signup-msg" class="tiny muted"></p>
+    <div class="auth-grid">
+      <section>
+        <h3>Login</h3>
+        <form id="login-form" class="login-grid">
+          <label for="login-username">username</label><input id="login-username" required />
+          <label for="login-password">password</label><input id="login-password" type="password" required />
+          <button class="btn" type="submit">Enter</button><span id="login-msg" class="error"></span>
         </form>
       </section>
-    </main>
 
-    <script src="auth-session.js"></script>
-    <script src="login.js"></script>
-  </body>
+      <section>
+        <h3>Sign Up</h3>
+        <form id="signup-form" class="login-grid">
+          <label for="signup-username">username</label><input id="signup-username" required />
+          <label for="signup-password">password</label><input id="signup-password" type="password" required />
+          <button class="btn ghost" type="submit">Create Account</button><span id="signup-msg" class="error"></span>
+        </form>
+      </section>
+    </div>
+
+    <p class="tiny muted">Promotion keys found in the ARG can raise your clearance level. Every next rank has a different key.</p>
+    <p class="hidden-link">.</p>
+  </main>
+
+  <script src="auth-session.js"></script>
+  <script src="login.js"></script>
+</body>
 </html>

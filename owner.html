@@ -1,74 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>CEO Console</title><link rel="stylesheet" href="styles.css" /></head>
-  <body>
-    <main class="center-panel ceo-ok">
-      <p class="system-tag">ORPHEUS_CEO Console</p>
-      <h1>Private control center</h1>
-      <p class="muted">Manage players, chat moderation, exports, and the ARG rank route.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEO Console</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function () {
+      try {
+        const raw = sessionStorage.getItem("orpheus_session_v3");
+        const session = raw ? JSON.parse(raw) : null;
+        if (!session || !session.expiresAt || Date.now() > session.expiresAt || session.level !== 24) {
+          window.location.replace("index.html");
+          return;
+        }
+        document.documentElement.classList.add("ceo-ok");
+      } catch {
+        window.location.replace("index.html");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <main class="panel owner-locked">
+    <h2>ORPHEUS_CEO Console</h2>
+    <p class="muted">Private control center. Manage players, chat moderation, exports, and ARG rank routes.</p>
 
-      <div class="btn-row">
-        <button class="btn owner-tab active" type="button" data-tab="players">Players</button>
-        <button class="btn ghost owner-tab" type="button" data-tab="chat">Chat Tools</button>
-        <button class="btn ghost owner-tab" type="button" data-tab="arg">ARG</button>
-        <button class="btn ghost owner-tab" type="button" data-tab="system">System</button>
-      </div>
+    <div class="btn-row wrap-row">
+      <button class="btn ghost owner-tab active" data-tab="players" type="button">Players</button>
+      <button class="btn ghost owner-tab" data-tab="chat" type="button">Chat Tools</button>
+      <button class="btn ghost owner-tab" data-tab="arg" type="button">ARG</button>
+      <button class="btn ghost owner-tab" data-tab="system" type="button">System</button>
+    </div>
 
-      <section id="tab-players" class="owner-panel owner-panel-grid">
-        <div class="owner-split">
+    <section id="tab-players" class="owner-panel">
+      <div class="owner-split">
+        <aside>
+          <h3>Players</h3>
           <ul id="playersList" class="player-list"></ul>
-          <div class="panel compact-panel">
-            <h2>Selected Player</h2>
-            <div id="playerDetails">Select a player to view rank, progress, moderation, and chat logs.</div>
-            <p id="playerActionMsg" class="tiny muted"></p>
-          </div>
-        </div>
-      </section>
+        </aside>
+        <article>
+          <h3>Selected Player</h3>
+          <div id="playerDetails" class="muted">Select a player to view rank, progress, moderation, and chat logs.</div>
+        </article>
+      </div>
+    </section>
 
-      <section id="tab-chat" class="owner-panel owner-panel-grid" hidden>
-        <div class="panel compact-panel">
-          <h2>Chat Controls</h2>
-          <div class="btn-row">
-            <button id="clearChatBtn" class="btn" type="button">Clear Logs</button>
-            <button id="saveChatBtn" class="btn ghost" type="button">Save Logs</button>
-          </div>
-          <h3>Inject DEV Threads</h3>
-          <div class="btn-row">
-            <button class="btn ghost inject-dev" type="button" data-dev="DEV_00">DEV00 Talk</button>
-            <button class="btn ghost inject-dev" type="button" data-dev="DEV_01">DEV01 Talk</button>
-            <button class="btn ghost inject-dev" type="button" data-dev="DEV_02">DEV02 Talk</button>
-            <button class="btn ghost inject-dev" type="button" data-dev="DEV_03">DEV03 Talk</button>
-            <button class="btn ghost inject-dev" type="button" data-dev="DEV_04">DEV04 Talk</button>
-            <button class="btn ghost inject-dev" type="button" data-dev="DEV_05">DEV05 Talk</button>
-            <button class="btn ghost inject-dev" type="button" data-dev="SYSTEM">SYSTEM Interrupt</button>
-          </div>
-          <h3>DEV00 Custom Message</h3>
-          <form id="dev00CustomForm" class="dev00-custom-form">
-            <textarea id="dev00CustomText" placeholder="Message"></textarea>
-            <button class="btn" type="submit">Send as DEV00</button>
-          </form>
-          <p id="chatToolsMsg" class="tiny muted"></p>
-        </div>
-      </section>
+    <section id="tab-chat" class="owner-panel" hidden>
+      <h3>Chat Controls</h3>
+      <div class="btn-row wrap-row">
+        <button id="clearChatBtn" class="btn ghost" type="button">Clear Logs</button>
+        <button id="saveChatBtn" class="btn ghost" type="button">Save Logs</button>
+      </div>
+      <h4>Inject DEV Threads</h4>
+      <div class="btn-row wrap-row">
+        <button class="btn ghost inject-dev" data-dev="DEV_00" type="button">DEV00 Talk</button>
+        <button class="btn ghost inject-dev" data-dev="DEV_01" type="button">DEV01 Talk</button>
+        <button class="btn ghost inject-dev" data-dev="DEV_02" type="button">DEV02 Talk</button>
+        <button class="btn ghost inject-dev" data-dev="DEV_03" type="button">DEV03 Talk</button>
+        <button class="btn ghost inject-dev" data-dev="DEV_04" type="button">DEV04 Talk</button>
+        <button class="btn ghost inject-dev" data-dev="DEV_05" type="button">DEV05 Talk</button>
+        <button class="btn ghost inject-dev" data-dev="SYSTEM" type="button">SYSTEM Interrupt</button>
+      </div>
+      <div class="panel dev00-custom-panel">
+        <h4>DEV00 Custom Message</h4>
+        <form id="dev00CustomForm" class="dev00-custom-form">
+          <label for="dev00CustomText">Message</label>
+          <textarea id="dev00CustomText" maxlength="280" placeholder="Type what DEV00 should say..."></textarea>
+          <button id="dev00CustomSend" class="btn ghost" type="submit">Send as DEV00</button>
+        </form>
+      </div>
+      <p id="chatToolsMsg" class="muted tiny"></p>
+    </section>
 
-      <section id="tab-arg" class="owner-panel owner-panel-grid" hidden>
-        <div class="panel compact-panel">
-          <h2>ARG Rank Route</h2>
-          <p class="muted">Click any rank to see how to get it and what unique promotion key format belongs to that next promotion.</p>
-          <div class="owner-arg-layout">
-            <div id="argRankMenu" class="rank-menu"></div>
-            <div id="argRankDetails" class="panel compact-panel"></div>
-          </div>
-        </div>
-      </section>
+    <section id="tab-arg" class="owner-panel" hidden>
+      <h3>ARG Rank Menu</h3>
+      <p class="muted">Click any rank to see how to get it and which unique promotion key belongs to the next step.</p>
+      <div class="owner-arg-layout">
+        <div id="argRankMenu" class="rank-menu"></div>
+        <div id="argRankDetails" class="panel arg-detail-panel muted">Choose a rank to inspect its route.</div>
+      </div>
+    </section>
 
-      <section id="tab-system" class="owner-panel owner-panel-grid" hidden>
-        <div class="panel compact-panel">
-          <h2>System</h2>
-          <div class="btn-row"><button id="ownerLogout" class="btn" type="button">Log Out</button><a class="btn ghost" href="terminal.html">Open Terminal</a></div>
-        </div>
-      </section>
-    </main>
-    <script src="auth-session.js"></script><script src="owner-dashboard.js"></script>
-  </body>
+    <section id="tab-system" class="owner-panel" hidden>
+      <h3>System</h3>
+      <div class="btn-row wrap-row">
+        <button id="ownerLogout" class="btn ghost" type="button">Log Out</button>
+        <a class="btn ghost" href="terminal.html">Open Terminal</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="auth-session.js"></script>
+  <script src="owner-dashboard.js"></script>
+</body>
 </html>
