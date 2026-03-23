@@ -16,6 +16,68 @@ const state = {
   seenCipherNote: false,
   observed: false,
   blackboxUnlocked: false,
+  cwd: "root",
+};
+
+const files = {
+  "readme.txt": "Welcome to ORPHEUS. Use help to view command list.",
+  "clue1.txt": "archive shard: zt",
+  "clue2.txt": "fragment recovered: ke",
+  "clue3.txt": "residual packet: tl",
+  "cipher_note.txt": "encrypted memo: --ctr ltos gr zgf zlxkz --ctr",
+  "signal.bin": "01000100 01000101 01010110 00110000 00110000 01001100 01001001 01000101 01010011",
+  "doc_a.enc": "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xWnROYm4xYUJZX0k5X3EzdkNjSERQbWN4MDNIVEhtZnpLaUNLZEJuVjBzSS9lZGl0P3VzcD1zaGFyaW5n",
+  "doc_b.enc": "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xZG1pbFlEcS1rRWZ6cTVMMVFvNDcxajNQY3lXLTBrM1V3SlY2OVpBSVViMC9lZGl0P3VzcD1zaGFyaW5n",
+  "doc_c.enc": "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xZHlHT2l3bkhHbi1vSVVRR2R6WFd0bkRjMDIzczhOcURlczVKUm1jNW1lTS9lZGl0P3VzcD1zaGFyaW5n",
+  "thread_01.log": "[DEV_01] we are not dead. we are sandboxed.",
+  "thread_02.log": "[DEV_02] he forged my checksum. DEV_00 isn't human.",
+  "thread_03.log": "[DEV_03] if player reaches override, he gets out.",
+  "devlog.txt": "DEV_03: if this reaches anyone, do NOT run override",
+  "manifest.txt": "active threads: DEV_00 DEV_01 DEV_02 DEV_03 DEV_04 DEV_05",
+};
+
+const fileTree = {
+  root: {
+    type: "dir",
+    children: {
+      inbox: {
+        type: "dir",
+        children: {
+          "readme.txt": { type: "file" },
+          "clue1.txt": { type: "file" },
+          "clue2.txt": { type: "file" },
+        },
+      },
+      archive: {
+        type: "dir",
+        children: {
+          "clue3.txt": { type: "file" },
+          "thread_01.log": { type: "file" },
+          "thread_02.log": { type: "file" },
+          "thread_03.log": { type: "file" },
+          "devlog.txt": { type: "file" },
+          "doc_a.enc": { type: "file" },
+          "doc_b.enc": { type: "file" },
+          "doc_c.enc": { type: "file" },
+        },
+      },
+      sys: {
+        type: "dir",
+        children: {
+          "manifest.txt": { type: "file" },
+          "signal.bin": { type: "file" },
+          "cipher_note.txt": { type: "file" },
+        },
+      },
+      quarantine: {
+        type: "dir",
+        children: {
+          "final_clue.txt": { type: "file" },
+          "blackbox.log": { type: "file" },
+        },
+      },
+    },
+  },
 };
 
 function trackSessionStart() {
@@ -41,23 +103,6 @@ function trackCipherTrace() {
   window.argAuth.recordProgress((m) => ({ ...m, cipherTraces: (m.cipherTraces || 0) + 1 }));
 }
 
-const files = {
-  "readme.txt": "Welcome to ORPHEUS. Use help to view command list.",
-  "clue1.txt": "archive shard: zt",
-  "clue2.txt": "fragment recovered: ke",
-  "clue3.txt": "residual packet: tl",
-  "cipher_note.txt": "encrypted memo: --ctr ltos gr zgf zlxkz --ctr",
-  "signal.bin": "01000100 01000101 01010110 00110000 00110000 01001100 01001001 01000101 01010011",
-  "doc_a.enc": "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xWnROYm4xYUJZX0k5X3EzdkNjSERQbWN4MDNIVEhtZnpLaUNLZEJuVjBzSS9lZGl0P3VzcD1zaGFyaW5n",
-  "doc_b.enc": "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xZG1pbFlEcS1rRWZ6cTVMMVFvNDcxajNQY3lXLTBrM1V3SlY2OVpBSVViMC9lZGl0P3VzcD1zaGFyaW5n",
-  "doc_c.enc": "aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xZHlHT2l3bkhHbi1vSVVRR2R6WFd0bkRjMDIzczhOcURlczVKUm1jNW1lTS9lZGl0P3VzcD1zaGFyaW5n",
-  "thread_01.log": "[DEV_01] we are not dead. we are sandboxed.",
-  "thread_02.log": "[DEV_02] he forged my checksum. DEV_00 isn't human.",
-  "thread_03.log": "[DEV_03] if player reaches override, he gets out.",
-  "devlog.txt": "DEV_03: if this reaches anyone, do NOT run override",
-  "manifest.txt": "active threads: DEV_00 DEV_01 DEV_02 DEV_03 DEV_04 DEV_05",
-};
-
 function print(line, cls = "") {
   const div = document.createElement("div");
   if (cls) div.className = cls;
@@ -72,8 +117,83 @@ function boot() {
   print("ORPHEUS NODE BOOT v3.17", "logline-sys");
   print("Emergency relay active. Non-admin user detected.", "logline-sys");
   print("Type 'help' to inspect available commands.", "logline-sys");
+  print("Filesystem mounted at /root. Use pwd, cd, tree, and ls to navigate.", "logline-sys");
   print("Thread chatter has moved to Relay Chat.", "logline-sys");
   print("", "logline-sys");
+}
+
+function getNode(path) {
+  return path.split("/").reduce((node, part) => {
+    if (!part) return node;
+    return node?.children?.[part] || null;
+  }, fileTree);
+}
+
+function visibleEntries(node) {
+  return Object.entries(node.children || {}).filter(([name]) => {
+    if (name === "final_clue.txt") return state.unlockedFinal;
+    if (name === "blackbox.log") return state.blackboxUnlocked;
+    return true;
+  });
+}
+
+function listDirectory() {
+  const node = getNode(state.cwd);
+  if (!node || node.type !== "dir") {
+    print("directory unavailable", "error");
+    return;
+  }
+  const entries = visibleEntries(node).map(([name, value]) => `${value.type === "dir" ? "[dir]" : "[file]"} ${name}`);
+  print(entries.join("  "));
+}
+
+function changeDirectory(target) {
+  if (!target || target === "~" || target === "/") {
+    state.cwd = "root";
+    print("moved to /root", "success");
+    return;
+  }
+  if (target === "..") {
+    const parts = state.cwd.split("/");
+    if (parts.length > 1) parts.pop();
+    state.cwd = parts.join("/") || "root";
+    print(`moved to /${state.cwd}`, "success");
+    return;
+  }
+  const next = target.startsWith("/") ? target.replace(/^\/+/, "") : `${state.cwd}/${target}`;
+  const node = getNode(next);
+  if (!node || node.type !== "dir") {
+    print(`cd: ${target}: no such directory`, "error");
+    return;
+  }
+  state.cwd = next;
+  print(`moved to /${state.cwd}`, "success");
+}
+
+function printTree(path = "root", indent = "") {
+  const node = getNode(path);
+  if (!node || node.type !== "dir") return;
+  if (!indent) print(`${path}/`);
+  visibleEntries(node).forEach(([name, value]) => {
+    print(`${indent}${value.type === "dir" ? "+" : "-"} ${name}`);
+    if (value.type === "dir") {
+      printTree(`${path}/${name}`, `${indent}  `);
+    }
+  });
+}
+
+function resolveFile(name) {
+  const current = getNode(state.cwd);
+  if (current?.children?.[name]?.type === "dir") return { type: "dir", name };
+  if (files[name] || name === "final_clue.txt" || name === "blackbox.log") return { type: "file", name };
+  if (name.includes("/")) {
+    const clean = name.replace(/^\/+/, "");
+    const base = clean.split("/").pop();
+    const node = getNode(clean);
+    if (node?.type === "file") return { type: "file", name: base };
+    if (node?.type === "dir") return { type: "dir", name: base };
+  }
+  return { type: "file", name };
 }
 
 function handleCommand(raw) {
@@ -82,7 +202,7 @@ function handleCommand(raw) {
 
   switch (cmd.toLowerCase()) {
     case "help":
-      print("Commands: help, ls, cat <file>, clear");
+      print("Commands: help, ls, cat <file>, cd <dir>, pwd, tree, clear");
       if (session.level >= 2) print("L2+ unlock: encrypt <text>, decrypt <text>, unlock final_clue.txt <key>, cipherlab, trace");
       if (session.level >= 14) print("L14+ unlock: override");
       if (session.level >= 24) print("CEO unlock: owner");
@@ -92,7 +212,16 @@ function handleCommand(raw) {
       print("Rank tools: rankhub, rankstatus, rewards");
       break;
     case "ls":
-      print(Object.keys(files).concat(state.unlockedFinal ? ["final_clue.txt"] : []).join("  "));
+      listDirectory();
+      break;
+    case "cd":
+      changeDirectory(args[0]);
+      break;
+    case "pwd":
+      print(`/${state.cwd}`);
+      break;
+    case "tree":
+      printTree();
       break;
     case "cat":
       if (!args.length) {
@@ -171,7 +300,14 @@ function handleCommand(raw) {
   }
 }
 
-function readFile(name) {
+function readFile(inputName) {
+  const resolved = resolveFile(inputName);
+  const name = resolved.name;
+  if (resolved.type === "dir") {
+    print(`cat: ${name}: is a directory`, "error");
+    return;
+  }
+
   if (files[name] || name === "final_clue.txt" || name === "blackbox.log") trackFileRead(name);
 
   if (name === "clue1.txt") state.clueParts.add("zt");
@@ -435,7 +571,7 @@ function showRewards() {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const raw = input.value;
-  print(`player@orpheus:~$ ${raw}`, "logline-sys");
+  print(`player@orpheus:${state.cwd}$ ${raw}`, "logline-sys");
   handleCommand(raw);
   input.value = "";
 });
